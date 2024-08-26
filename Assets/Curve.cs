@@ -307,10 +307,10 @@ namespace Offsetted.Curve
         }
 
         /// <summary>
-        /// Evaluate the normalized tangent of a given distance on curve
+        /// Evaluate the tangent of a given distance on curve
         /// </summary>
         /// <param name="distance">The given distance</param>
-        /// <returns>Normalized tangent</returns>
+        /// <returns>Tangent</returns>
         /// <exception cref="ArgumentException">Given distance is negative</exception>
         public float3 EvaluateTangent(float distance)
         {
@@ -319,7 +319,7 @@ namespace Offsetted.Curve
             if (distance > SegmentLength && nextCurve != null)
                 return nextCurve.EvaluateTangent(distance - SegmentLength);
             float t = CurveUtility.GetDistanceToInterpolation(lut, startDistance + distance);
-            return math.normalize(CurveUtility.EvaluateTangent(bCurve, t));
+            return CurveUtility.EvaluateTangent(bCurve, t);
         }
 
         /// <summary>
